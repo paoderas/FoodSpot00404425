@@ -30,10 +30,13 @@ fun AppNavigation() {
                     }
                 )
             }
-
             entry<Routes.RestaurantDetail> { route ->
-                RestaurantDetailScreen(restaurantId = route.restaurantId)
+                RestaurantDetailScreen(
+                    restaurantId = route.restaurantId,
+                    onBack = { backStack.removeAt(backStack.size - 1) } // ← agrega esto
+                )
             }
+
 
 
         }
