@@ -35,6 +35,7 @@ fun AppNavigation() {
                 RestaurantDetailScreen(restaurantId = route.restaurantId)
             }
 
+
         }
     )
 }
