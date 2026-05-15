@@ -17,6 +17,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.pdm0126.foodspot_00404425.data.RestaurantRepository
 import com.pdm0126.foodspot_00404425.data.RestaurantRepositoryImpl
+import com.pdm0126.foodspot_00404425.navigation.AppNavigation
 import com.pdm0126.foodspot_00404425.screens.home.HomeViewModel
 import com.pdm0126.foodspot_00404425.screens.home.RestaurantListScreen
 import com.pdm0126.foodspot_00404425.ui.theme.FoodSpot_00404425Theme
@@ -28,12 +29,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             FoodSpot_00404425Theme {
-                val homeViewModel: HomeViewModel = viewModel(
-                    factory = viewModelFactory {
-                        initializer { HomeViewModel() }
-                    }
-                )
-                RestaurantListScreen(viewModel = homeViewModel)
+                AppNavigation()
             }
         }
     }
