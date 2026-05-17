@@ -1,16 +1,14 @@
 package com.pdm0126.foodspot_00404425.screens.search
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.items
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -24,7 +22,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pdm0126.foodspot_00404425.model.Restaurant
@@ -36,8 +37,8 @@ fun SearchBarScreen(
     onBack: () -> Unit,
     viewModel: SearchViewModel = viewModel()
 ) {
-    val query by viewModel.query
-    val results by viewModel.results
+    val query by viewModel.query.collectAsState()
+    val results by viewModel.results.collectAsState()
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
@@ -67,7 +68,7 @@ fun SearchBarScreen(
                 .padding(horizontal = 16.dp)
         ) {
 
-            // Campo de búsqueda
+
             OutlinedTextField(
                 value = query,
                 onValueChange = { viewModel.onQueryChange(it) },
@@ -80,7 +81,8 @@ fun SearchBarScreen(
 
             // Resultados
             when {
-                query.isBlank() -> { /* No muestra nada si no ha escrito */ }
+                query.isBlank() -> {
+                }
 
                 results.isEmpty() -> {
                     Text(
