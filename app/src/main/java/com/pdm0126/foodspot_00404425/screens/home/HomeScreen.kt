@@ -36,6 +36,7 @@ import coil.compose.AsyncImage
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RestaurantListScreen(viewModel: HomeViewModel = viewModel(),
+                         onSearchClick: () -> Unit,
                          onRestaurantClick: (Int)-> Unit){
     val groupedRestaurants by viewModel.groupedRestaurants.collectAsState()
     val loading by viewModel.loading.collectAsState()
@@ -50,7 +51,7 @@ fun RestaurantListScreen(viewModel: HomeViewModel = viewModel(),
                 TopAppBar(
                     title = { Text("FoodSpot") },
                     actions = {
-                        IconButton(onClick = { /* navegar a búsqueda */ }) {
+                        IconButton(onClick = onSearchClick) {
                             Icon(Icons.Default.Search, contentDescription = "Buscar")
                         }
                     }

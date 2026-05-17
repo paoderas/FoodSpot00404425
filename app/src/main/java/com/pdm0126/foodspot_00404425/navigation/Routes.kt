@@ -4,4 +4,5 @@ sealed class Routes {
     object Home: Routes()
 
     data class RestaurantDetail(val restaurantId: Int): Routes()
+    object Searchbar : Routes()
 }

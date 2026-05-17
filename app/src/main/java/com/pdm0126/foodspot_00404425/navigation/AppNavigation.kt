@@ -9,6 +9,7 @@ import androidx.navigation3.ui.NavDisplay
 
 import com.pdm0126.foodspot_00404425.screens.detail.RestaurantDetailScreen
 import com.pdm0126.foodspot_00404425.screens.home.RestaurantListScreen
+import com.pdm0126.foodspot_00404425.screens.search.SearchBarScreen
 
 
 @Composable
@@ -27,15 +28,29 @@ fun AppNavigation() {
                 RestaurantListScreen(
                     onRestaurantClick = { restaurantId ->
                         backStack.add(Routes.RestaurantDetail(restaurantId))
+                    },
+                    onSearchClick = {
+                        backStack.add(Routes.Searchbar)  // ← agrega esto
                     }
                 )
             }
             entry<Routes.RestaurantDetail> { route ->
                 RestaurantDetailScreen(
                     restaurantId = route.restaurantId,
-                    onBack = { backStack.removeAt(backStack.size - 1) } // ← agrega esto
+                    onBack = { backStack.removeAt(backStack.size - 1) }
                 )
             }
+            entry<Routes.Searchbar> {
+                SearchBarScreen(
+                    onRestaurantClick = { restaurantId ->
+                        backStack.add(Routes.RestaurantDetail(restaurantId))},
+                        onBack = { backStack.removeAt(backStack.size - 1) }
+
+                )
+
+
+            }
+
 
 
 
