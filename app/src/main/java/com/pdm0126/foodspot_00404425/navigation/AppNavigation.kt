@@ -30,7 +30,7 @@ fun AppNavigation() {
                         backStack.add(Routes.RestaurantDetail(restaurantId))
                     },
                     onSearchClick = {
-                        backStack.add(Routes.Searchbar)  // ← agrega esto
+                        backStack.add(Routes.Searchbar)
                     }
                 )
             }
